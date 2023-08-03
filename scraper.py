@@ -39,12 +39,9 @@ def worker(task):
     baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
 
     url = baseurl + name
-    subprocess.run(["wget", "-O", name, url])
-    # execute ls command
-    # parse the webpage
-    with open(name, 'r') as f:
-        contents = f.read()
-    soup = BeautifulSoup(contents, "html.parser")
+    result = subprocess.run(["wget", "-O", "-", url], capture_output=True, text=True)
+
+    soup = BeautifulSoup(result.stdout, "html.parser")
     all_text = ''.join(soup.stripped_strings)
 
     # first 1000 characters of the string
