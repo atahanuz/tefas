@@ -1,5 +1,5 @@
 # Start with a base image containing Python runtime
-FROM python:latest
+FROM python:3.9
 
 # The enviroment variable ensures that the python output is set straight
 # to the terminal with out buffering it first
