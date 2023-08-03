@@ -1,7 +1,7 @@
 import main
 import smtplib
 
-text= main.main("MAC","AFT","IPJ","TCD","TKF","AEH")
+text= main.menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH")
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
