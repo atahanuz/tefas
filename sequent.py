@@ -28,10 +28,10 @@ def menu(*arguments):
         baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
 
         url = baseurl + name
-        subprocess.run(["wget", url])
+        subprocess.run(["wget", "-O", name, url])
         #execute ls command
         # parse the webpage
-        with open(f'FonAnaliz.aspx?FonKod={name}', 'r') as f:
+        with open(name, 'r') as f:
             contents = f.read()
 
         soup = BeautifulSoup(contents, "html.parser")
