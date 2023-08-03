@@ -27,20 +27,8 @@ def menu(*arguments):
 
         url = baseurl + name
 
-        context = ssl._create_unverified_context()
-
-
-        # Use the context to create a connection
-        conn = http.client.HTTPSConnection("www.tefas.gov.tr", context=context)
-
-        # Send a GET request
-        conn.request("GET", url)
-
-        # Get the response
-        res = conn.getresponse()
-        data = res.read()
-
-        soup = BeautifulSoup(data, "html.parser")
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, "html.parser")
         all_text = ''.join(soup.stripped_strings)
 
         # first 1000 characters of the string
