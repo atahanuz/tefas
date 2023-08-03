@@ -61,7 +61,7 @@ def worker(task):
     increment = float(increment)
 
     # merge argument, price and increment in a string.
-    result = f'KOD= {name}\nNAME= {fullname}\nPRICE= {price}\nCHANGE= {increment}\n\n'
+    result = f'KODX= {name}\nNAME= {fullname}\nPRICE= {price}\nCHANGE= {increment}\n\n'
 
     finaltext += result
 
