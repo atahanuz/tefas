@@ -18,7 +18,7 @@ def main(*arguments):
 
     with Manager() as manager:
         results = manager.list(range(len(arguments)))
-        with concurrent.futures.ProcessPoolExecutor() as executor:
+        with concurrent.futures.ThreadPoolExecutor() as executor:
             counter=0
             tasks=[]
             for arg in arguments:
