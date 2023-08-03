@@ -39,6 +39,7 @@ def worker(task):
 
     url = baseurl + name
 
+    content=requests.get(url, verify=True)
 
     r = requests.get(url)
     soup = BeautifulSoup(r.content, "html.parser")
@@ -76,7 +77,7 @@ if __name__ == '__main__':
     #datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "\n\n"
     results=menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
     print("ended")
-
+    print(results)
 
 
 

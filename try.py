@@ -1,13 +1,27 @@
-import http.client
+import requests
 import ssl
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.poolmanager import PoolManager
+from requests.packages.urllib3.util.ssl_ import create_urllib3_context
 
-context = ssl.SSLContext()
-context.options &= ~ssl.OP_NO_SSLv3 & ~ssl.OP_NO_TLSv1 & ~ssl.OP_NO_TLSv1_1
-context.options |= ssl.OP_NO_RENEGOTIATION
+class TLSAdapter(HTTPAdapter):
+    def __init__(self, ssl_options=0, **kwargs):
+        self.ssl_options = ssl_options
+        super().__init__(**kwargs)
 
-conn = http.client.HTTPSConnection("www.tefas.gov.tr", context=context)
-conn.request("GET", "/FonAnaliz.aspx?FonKod=AFT")
-res = conn.getresponse()
-data = res.read()
+    def init_poolmanager(self, *pool_args, **pool_kwargs):
+        context = create_urllib3_context(self.ssl_options)
+        self.poolmanager = PoolManager(*pool_args,
+                                       ssl_context=context,
+                                       **pool_kwargs)
 
-print(data.decode("utf-8"))
+# Force TLSv1.2
+adapter = TLSAdapter(ssl.PROTOCOL_TLSv1_2)
+
+s = requests.Session()
+s.mount("https://", adapter)
+
+response = s.get('https://httpbin.org/get')
+
+print(response.status_code)
+print(response.text)
