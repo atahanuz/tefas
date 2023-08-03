@@ -13,6 +13,9 @@
     h1 {
       font-size: 12px;
     }
+    .custom-margin {
+      margin-left: 32px;
+    }
   </style>
 
   <title>Flask App</title>
@@ -22,6 +25,7 @@
   <form action="/" method="post" class="mb-3">
     <input type="text" name="elements" class="form-control" placeholder="Enter elements, separated by commas">
     <button type="submit" class="btn btn-primary mt-2">Submitt</button>
+    <a href="/cmd" class="btn btn-danger mt-2 custom-margin">Go to CMD</a>
   </form>
   <h1>{{ text | replace('\n', '<br>') | safe }}</h1>
 </div>
