@@ -21,7 +21,7 @@ RUN pip install -r requirements.txt
 
 # we need wget to set up the Geckodriver
 
-RUN apt-get update && apt-get install -y wget git rsync
+RUN apt-get update && apt-get install -y wget git rsync curl
 
 # Install GeckoDriver
 
