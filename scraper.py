@@ -1,5 +1,6 @@
 
 import datetime
+import subprocess
 import time
 
 import requests
@@ -18,7 +19,7 @@ def menu(*arguments):
 
     with Manager() as manager:
         results = manager.list(range(len(arguments)))
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+        with concurrent.futures.ProcessPoolExecutor() as executor:
             counter=0
             tasks=[]
             for arg in arguments:
@@ -38,11 +39,12 @@ def worker(task):
     baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
 
     url = baseurl + name
-
-    content=requests.get(url, verify=True)
-
-    r = requests.get(url)
-    soup = BeautifulSoup(r.content, "html.parser")
+    subprocess.run(["wget", "-O", name, url])
+    # execute ls command
+    # parse the webpage
+    with open(name, 'r') as f:
+        contents = f.read()
+    soup = BeautifulSoup(contents.content, "html.parser")
     all_text = ''.join(soup.stripped_strings)
 
     # first 1000 characters of the string

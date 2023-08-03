@@ -51,7 +51,7 @@ def cmd():
     return render_template('cmd.html')
 
 def initialize_text(elements):
-    time_passed,result=sequent.menu(*elements)
+    time_passed,result=scraper.menu(*elements)
     text=datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "\n\n"
     text+="Execution Time= "+str(time_passed)+"\n\n"
     print(result)
