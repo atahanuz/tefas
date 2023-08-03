@@ -44,7 +44,7 @@ def worker(task):
     # parse the webpage
     with open(name, 'r') as f:
         contents = f.read()
-    soup = BeautifulSoup(contents.content, "html.parser")
+    soup = BeautifulSoup(contents, "html.parser")
     all_text = ''.join(soup.stripped_strings)
 
     # first 1000 characters of the string
