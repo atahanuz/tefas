@@ -10,7 +10,7 @@ from multiprocessing import Manager
 import concurrent.futures
 
 
-def main(*arguments):
+def menu(*arguments):
     print("started scraping")
     start_time = time.time()
     if arguments is None:
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     start_time = time.time()
     print("started")
     #datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "\n\n"
-    results=main("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
+    results=menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
     print("ended")
 
 
