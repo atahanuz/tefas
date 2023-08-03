@@ -1,5 +1,5 @@
 # Start with a base image containing Python runtime
-FROM python:latest
+FROM python:3.9
 
 # The enviroment variable ensures that the python output is set straight
 # to the terminal with out buffering it first
@@ -23,6 +23,8 @@ RUN pip install -r requirements.txt
 
 RUN apt-get update && apt-get install -y wget git rsync
 
+# Install GeckoDriver
+
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
@@ -30,7 +32,3 @@ EXPOSE 8080
 
 #CMD python starter.py && python xxx.py
 ENTRYPOINT ["bash", "entrypoint.sh"]
-
-
-
-
