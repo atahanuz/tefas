@@ -2,7 +2,8 @@
 import datetime
 import time
 import urllib.request
-
+import http.client
+import ssl
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -26,14 +27,20 @@ def menu(*arguments):
 
         url = baseurl + name
 
-        # Add headers to mimic a browser
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
+        context = ssl._create_unverified_context()
 
-        req = urllib.request.Request(url=url)
-        html = urllib.request.urlopen(req).read()
 
-        soup = BeautifulSoup(html, "html.parser")
+        # Use the context to create a connection
+        conn = http.client.HTTPSConnection("www.tefas.gov.tr", context=context)
+
+        # Send a GET request
+        conn.request("GET", url)
+
+        # Get the response
+        res = conn.getresponse()
+        data = res.read()
+
+        soup = BeautifulSoup(data, "html.parser")
         all_text = ''.join(soup.stripped_strings)
 
         # first 1000 characters of the string
