@@ -28,8 +28,7 @@ def menu(*arguments):
         baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
 
         url = baseurl + name
-        subprocess.run(['curl', url, '-o', 'output.html'])
-
+        subprocess.run(['curl', '--tlsv1.2', 'https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=AFT', '-o', 'output.html'])
         # parse the webpage
         with open('output.html', 'r') as f:
             contents = f.read()
