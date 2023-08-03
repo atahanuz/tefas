@@ -21,8 +21,8 @@ def home():
         if elements==[""]:
             elements = ["MAC", "AFT", "IPJ", "TCD", "TKF", "AEH"]
 
-        #text = initialize_text(elements)
-        text="HGDSHSDAHGDSHJGJGHDSAHGDSA"
+        time_passed, result = scraper.main(*elements)
+        text=result
         return render_template('index.html', text=text)
 
 
