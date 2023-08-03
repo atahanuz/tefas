@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Command Execution Page</title>
+</head>
+<body>
+<form method="POST">
+    <input type="text" name="command" placeholder="Enter your command" required>
+    <button type="submit">Execute</button>
+</form>
+{% if result %}
+<h2>Command Output:</h2>
+<pre>{{ result }}</pre>
+{% endif %}
+</body>
+</html>
