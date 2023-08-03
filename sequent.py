@@ -1,6 +1,7 @@
 
 import datetime
 import time
+import urllib.request
 
 import requests
 from bs4 import BeautifulSoup
@@ -25,9 +26,14 @@ def menu(*arguments):
 
         url = baseurl + name
 
-        r = requests.get(url, verify=False)
+        # Add headers to mimic a browser
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
-        soup = BeautifulSoup(r.content, "html.parser")
+        req = urllib.request.Request(url=url)
+        html = urllib.request.urlopen(req).read()
+
+        soup = BeautifulSoup(html, "html.parser")
         all_text = ''.join(soup.stripped_strings)
 
         # first 1000 characters of the string
