@@ -28,12 +28,9 @@ def menu(*arguments):
         baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
 
         url = baseurl + name
-        subprocess.run(['curl', '--tlsv1.2', 'https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=AFT', '-o', 'output.html'])
-        # parse the webpage
-        with open('output.html', 'r') as f:
-            contents = f.read()
+        content = requests.get(url, verify=True)
 
-        soup = BeautifulSoup(contents, "html.parser")
+        soup = BeautifulSoup(content.content, "html.parser")
         all_text = ''.join(soup.stripped_strings)
 
         # first 1000 characters of the string
