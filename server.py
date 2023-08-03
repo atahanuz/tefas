@@ -23,7 +23,6 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
 
-
     if request.method == 'GET':
         #text = initialize_text(elements)
         text="Enter ETF names seperated by space. If you don't enter anything, default ETFs will be used."
@@ -31,6 +30,12 @@ def home():
         return render_template('index.html', text=text)
 
     if request.method == 'POST':
+        action = request.form.get('action')
+        if action == 'refresh':
+            #execute enrypoint.sh bash
+            subprocess.run(["bash", "entrypoint.sh"])
+
+
         elements = request.form.get('elements').split(' ')
         elements = [element.upper() for element in elements]
         if elements==[""]:
@@ -49,6 +54,8 @@ def cmd():
             result = str(e)
         return render_template('cmd.html', result=result.decode('utf-8'))
     return render_template('cmd.html')
+
+
 
 def initialize_text(elements):
     time_passed,result=scraper.menu(*elements)

@@ -24,8 +24,10 @@
 <div class="container mt-4">
   <form action="/" method="post" class="mb-3">
     <input type="text" name="elements" class="form-control" placeholder="Enter elements, separated by commas">
-    <button type="submit" class="btn btn-primary mt-2">Submitt</button>
+    <button type="submit" class="btn btn-primary mt-2">Submit2</button>
     <a href="/cmd" class="btn btn-danger mt-2 custom-margin">Go to CMD</a>
+    <!-- Added the Refresh button here -->
+    <button id="refreshBtn" type="button" class="btn btn-success mt-2 custom-margin">Refresh</button>
   </form>
   <h1>{{ text | replace('\n', '<br>') | safe }}</h1>
 </div>
@@ -35,5 +37,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+
+<!-- Script to handle the button click event -->
+<script>
+  $(document).ready(function() {
+    $("#refreshBtn").click(function() {
+      $.ajax({
+        url: '/',
+        type: 'POST',
+        data: {
+          action: 'refresh'
+        },
+        success: function(result) {
+          // You can handle the server response here if needed
+          console.log(result);
+        },
+        error: function(error) {
+          console.error(error);
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
