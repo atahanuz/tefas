@@ -23,9 +23,7 @@ def menu(*arguments):
 
     for name in arguments:
         finaltext = ""
-        baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
-
-        url = baseurl + name
+        url = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=AFT"
 
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "html.parser")
