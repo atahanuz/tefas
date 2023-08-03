@@ -25,7 +25,8 @@ def menu(*arguments):
 
         url = baseurl + name
 
-        r = requests.get(url,verify=False)
+        r = requests.get(url, verify=False)
+
         soup = BeautifulSoup(r.content, "html.parser")
         all_text = ''.join(soup.stripped_strings)
 
