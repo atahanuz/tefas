@@ -29,6 +29,7 @@ def initialize_text(elements):
     time_passed,result=scraper.main(*elements)
     text=datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "\n\n"
     text+="Execution Time= "+str(time_passed)+"\n\n"
+    print(result)
     for i in result:
         text+=i
     return text

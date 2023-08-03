@@ -11,6 +11,7 @@ import concurrent.futures
 
 
 def main(*arguments):
+    print("started scraping")
     start_time = time.time()
     if arguments is None:
         arguments = sys.argv[1:]
