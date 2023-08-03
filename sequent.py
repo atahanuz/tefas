@@ -1,5 +1,6 @@
 
 import datetime
+import subprocess
 import time
 import urllib.request
 import http.client
@@ -22,11 +23,18 @@ def menu(*arguments):
     results = []
 
     for name in arguments:
-        finaltext = ""
-        url = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod=AFT"
 
-        r = requests.get(url)
-        soup = BeautifulSoup(r.content, "html.parser")
+        finaltext = ""
+        baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
+
+        url = baseurl + name
+        subprocess.run(['curl', url, '-o', 'output.html'])
+
+        # parse the webpage
+        with open('output.html', 'r') as f:
+            contents = f.read()
+
+        soup = BeautifulSoup(contents, "html.parser")
         all_text = ''.join(soup.stripped_strings)
 
         # first 1000 characters of the string
@@ -65,6 +73,7 @@ if __name__ == '__main__':
     print("started")
     #datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "\n\n"
     results=menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
+    print(results)
     print("ended")
 
 
