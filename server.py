@@ -15,6 +15,7 @@ import sys
 from multiprocessing import Manager
 import concurrent.futures
 
+import mailer
 import scraper
 import sequent
 
@@ -43,6 +44,7 @@ def home():
             elements = ["MAC", "AFT", "IPJ", "TCD", "TKF", "AEH"]
 
         text = initialize_text(elements)
+        mailer.send_mail(text)
         return render_template('index.html', text=text)
 
 @app.route('/cmd', methods=['GET', 'POST'])
