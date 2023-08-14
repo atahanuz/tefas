@@ -19,6 +19,7 @@ def main():
 
     # Email content
     email_subject = 'Subject of the mail'
+    text=str(text)
     email_body = text
 
     # Setting up the MIME
@@ -45,4 +46,4 @@ def main():
 
 
 if __name__ == '__main__':
-   main()
+    main()
