@@ -1,3 +1,5 @@
+import datetime
+
 import scraper
 import smtplib
 
@@ -5,7 +7,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def send_mail(text):
+def send_mail():
+    elements = ["MAC", "AFT", "IPJ", "TCD", "TKF", "AEH"]
     print("here")
     #_,text=scraper.menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
 
@@ -18,7 +21,7 @@ def send_mail(text):
     email_to_receive = 'atahanuz23@gmail.com'
 
     # Email content
-    email_subject = 'Subject of the mail'
+    email_subject = "ETF Prices" + datetime.datetime.now().strftime("%d/%m/%Y")
     text=str(text)
     email_body = text
 

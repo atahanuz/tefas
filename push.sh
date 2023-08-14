@@ -1,1 +1,1 @@
-git commit && git push
+git commit && git pushmailer
