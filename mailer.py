@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def send_mail():
+def send_mail(text):
     elements = ["MAC", "AFT", "IPJ", "TCD", "TKF", "AEH"]
     print("here")
     #_,text=scraper.menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
