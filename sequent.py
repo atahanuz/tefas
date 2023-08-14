@@ -28,14 +28,12 @@ def menu(*arguments):
         baseurl = "https://www.tefas.gov.tr/FonAnaliz.aspx?FonKod="
 
         url = baseurl + name
-        subprocess.run(["wget", "-O", name, url])
-        #execute ls command
-        # parse the webpage
-        with open(name, 'r') as f:
-            contents = f.read()
+        #request the url
+        r = requests.get(url)
 
-        soup = BeautifulSoup(contents, "html.parser")
+        soup = BeautifulSoup(r.content, "html.parser")
         all_text = ''.join(soup.stripped_strings)
+        print(all_text)
 
         # first 1000 characters of the string
         all_text = all_text[500:800]
