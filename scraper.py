@@ -13,6 +13,7 @@ import concurrent.futures
 
 def menu(*arguments):
     print("started scraping")
+    print(arguments)
     start_time = time.time()
     if arguments is None:
         arguments = sys.argv[1:]
@@ -74,6 +75,7 @@ if __name__ == '__main__':
     start_time = time.time()
     print("started")
     #datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "\n\n"
+
     results=menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
     print("ended")
     print(results)
