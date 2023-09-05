@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-
+    subprocess.Popen(['python', "time_mailer.py"])
     if request.method == 'GET':
         #text = initialize_text(elements)
         text="Enter ETF names seperated by space. If you don't enter anything, default ETFs will be used."
