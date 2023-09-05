@@ -6,10 +6,19 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+def initialize_text(elements):
+    time_passed,result=scraper.menu(*elements)
+    text=datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "\n\n"
+    text+="Execution Time= "+str(time_passed)+"\n\n"
+    print(result)
+    for i in result:
+        text+=i
+    return text
 
 def send_mail(text):
-    elements = ["MAC", "AFT", "IPJ", "TCD", "TKF", "AEH"]
-    print("here")
+    if text is None:
+        elements = ["MAC", "AFT", "IPJ", "TCD", "TKF", "AEH"]
+        text = initialize_text(elements)
     #_,text=scraper.menu("MAC", "AFT", "IPJ", "TCD", "TKF", "AEH", "TPC")
 
 
@@ -21,7 +30,8 @@ def send_mail(text):
     email_to_receive = 'atahanuz23@gmail.com'
 
     # Email content
-    email_subject = "ETF Prices" + datetime.datetime.now().strftime("%d/%m/%Y")
+    email_subject = "Fon Fiyatları: "+ datetime.datetime.now().strftime("%d/%m/%Y")
+
     text=str(text)
     email_body = text
 
@@ -49,4 +59,4 @@ def send_mail(text):
 
 
 if __name__ == '__main__':
-    send_mail()
+    send_mail(None)
