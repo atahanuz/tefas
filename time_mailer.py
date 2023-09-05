@@ -7,4 +7,4 @@ import os
 
 while True:
     os.system("python mailer.py")
-    time.sleep(300)
+    time.sleep(60)

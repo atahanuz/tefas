@@ -15,7 +15,6 @@ import sys
 from multiprocessing import Manager
 import concurrent.futures
 
-import mailer
 import scraper
 import sequent
 
