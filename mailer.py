@@ -34,6 +34,7 @@ def send_mail(text):
 
     text=str(text)
     email_body = text
+    print(email_body)
 
     # Setting up the MIME
     message = MIMEMultipart()
