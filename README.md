@@ -59,7 +59,7 @@ for column in data:
 
 ## Contact
 Raise an issue on the GitHub repo:
-https://github.com/atahanuz/lol-stats/
+https://github.com/atahanuz/tefas/
 <br>
 
 *Disclaimer: This program doesn't provide any investment advice, it simply displays data based on user request.*
