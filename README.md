@@ -58,8 +58,8 @@ for column in data:
 
 
 ## Contact
-Raise an issue on the GitHub repo:
-https://github.com/atahanuz/tefas/
+Raise an issue on this GitHub repo:
+https://github.com/atahanuz/tefas/issues/new
 <br>
 
 *Disclaimer: This program doesn't provide any investment advice, it simply displays data based on user request.*
