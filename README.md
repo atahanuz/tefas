@@ -17,7 +17,7 @@ import tefas
 
 data= tefas.get_data("AFT","MAC","TCD")
 ```
-call tefas.get_data() function with the ETF names. You can pass a single or as many ETFs as you want.
+call tefas.get_data() function with the ETF (Exchange traded fund- Yatırım fonu) names. You can pass a single or as many ETFs as you want.
 You will get a Pandas dataframe with days as indexes and each ETFs daily prices as columns.
 
 You can pass an optional verbose=False argument if you want to disable printing scraping progression to the console.
